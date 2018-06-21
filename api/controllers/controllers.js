@@ -4,35 +4,37 @@ const nodemailer = require('nodemailer');
 
 
 var mongoose = require('mongoose'),
-Documento = mongoose.model('Documento'),
+Facebook = mongoose.model('Facebook'),
+Instagram = mongoose.model('Instagram'),
 Usuarios = mongoose.model('Usuarios');
+Encuesta = mongoose.model('Encuesta');
 
 //----------------------------------
 //CONTROLADOR GENERAL
 //----------------------------------
 exports.index = function(req, res) {
-  res.send("Bienvenido a la API de Impresiones");
+  res.send("Bienvenido a la API de FNC");
 };
 
 //----------------------------------
-//CONTROLADORES PARA - DOCUMENTOS -
+//CONTROLADORES PARA - FACEBOOK -
 //----------------------------------
 
-//LISTAR TODOS LOS DOCUMENTOS
-exports.Ver_Documentos = function(req, res) {
-  Documento.find({}, function(err, documentos) {
+//LISTAR TODOS LOS POSTS
+exports.facebook_ver_post = function(req, res) {
+  Facebook.find({}, function(err, facebook_post) {
     if (err)
       res.send(err);
-    res.json(documentos);
+    res.json(facebook_post);
   });
 };
 
-//ENCONTRAR DOCUMENTO POR CODIGO
-exports.Ver_Documento = function(req, res) {
-  Documento.findOne({ 'codigo': req.params.codigo }, function (err, documento) {
+//ENCONTRAR POSTS POR FECHA
+exports.ver_post = function(req, res) {
+  Documento.findOne({ 'fecha': req.params.fecha }, function (err, post) {
   if (err) 
     res.send(err);
-  res.json(documento);
+  res.json(post);
 })
 };
 
@@ -56,13 +58,13 @@ Documento.remove({
   });
 };
 
-//INGRESAR UN NUEVO DOCUMENTO
-exports.Ingresar_Documento = function(req, res) {
-  var Nuevo_Documento = new Documento(req.body);
-  Nuevo_Documento.save(function(err, documento) {
+//INGRESAR UN NUEVO POST
+exports.Ingresar_post = function(req, res) {
+  var Nuevo_Post = new Facebook(req.body);
+  Nuevo_Post.save(function(err, post) {
     if (err)
       res.send(err);
-    res.json(documento);
+    res.json(post);
   });
 };
 
@@ -191,7 +193,7 @@ exports.sendEmail = function(req, res) {
 
           // setup email data with unicode symbols
           let mailOptions = {
-              from: '"Impresiones SISTEM 👻" <ImpreSistem@gmail.com>', // sender address
+              from: '"FNC SISTEMA 👻" <FNC_SISTEMA@gmail.com>', // sender address
               to: req.params.email, // list of receivers
               subject: 'Recuperacion de contraseña', // Subject line
               text: '', // plain text body

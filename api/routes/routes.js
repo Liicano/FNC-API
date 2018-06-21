@@ -10,16 +10,16 @@ app.route('/').get(controller.index);
 
 app.route('/login').post(controller.CheckLogin);
 //----------------------------------
-//RUTAS PARA - EQUIPOS -
+//RUTAS PARA - FACEBOOK -
 //----------------------------------
-    app.route('/documentos')
-      .get(/*authController.isAuthenticated,*/ controller.Ver_Documentos)
-      .post(/*authController.isAuthenticated,*/ controller.Ingresar_Documento);
+    app.route('/facebook/posts')
+      .get(/*authController.isAuthenticated,*/ controller.facebook_ver_post)
+      .post(/*authController.isAuthenticated,*/ controller.Ingresar_post);
 
-    app.route('/documento/:codigo')
-      .get(/*authController.isAuthenticated,*/ controller.Ver_Documento)
-      .put(/*authController.isAuthenticated,*/ controller.Modificar_Documento)
-      .delete(/*authController.isAuthenticated,*/ controller.Eliminar_Documento);
+    app.route('/facebook/post/:fecha')
+      .get(/*authController.isAuthenticated,*/ controller.ver_post);
+      // .put(/*authController.isAuthenticated,*/ controller.Modificar_Documento)
+      // .delete(/*authController.isAuthenticated,*/ controller.Eliminar_Documento);
       
 
 //----------------------------------

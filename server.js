@@ -2,8 +2,10 @@ var express = require('express'),
   app = express(),
   port = process.env.PORT || 3000,
   mongoose = require('mongoose'),
-  Documento = require('./api/models/documentoModel'), //Modelos creados
+  Facebook = require('./api/models/facebookModel'), //Modelos creados
+  Instagram = require('./api/models/instagramModel'),
   Usuario = require('./api/models/usuarioModel'),
+  Encuesta = require('./api/models/encuestaModel'),
   jsonwebtoken = require("jsonwebtoken"),
   bodyParser = require('body-parser');
 //PASSPORT
@@ -11,7 +13,7 @@ var passport = require('passport');
   
 // CONEXION A LA BBDD DE MONGO
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/ImpresionesBD'); 
+mongoose.connect('mongodb://localhost/datos_fnc'); 
 
 // Passport - SESIONES -
 app.use(passport.initialize());
