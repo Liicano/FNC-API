@@ -1,2 +1,2 @@
-# Audiovisual-API
-Api de sistema de inventario, donde se manejan usuarios y equipos.
+# FNC-API
+Api de sistema de mineria de datos.
